@@ -8,11 +8,16 @@ class App extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.finishLogin = this.finishLogin.bind(this);
   }
 
   state = {
     password: "",
     appState: 0
+  }
+
+  finishLogin() {
+    this.setState({appState: 2});
   }
 
   handleSubmit(event) {
@@ -46,7 +51,13 @@ class App extends Component {
         }
         {
           this.state.appState === 1 && 
-          <LogIn />
+          <LogIn finishLogin={this.finishLogin}/>
+        }
+        {
+          this.state.appState === 2 &&
+          <div>
+            <p>Logged In</p>
+          </div>
         }
       </div>
     );
