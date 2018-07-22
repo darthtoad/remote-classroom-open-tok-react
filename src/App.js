@@ -3,6 +3,7 @@ import './App.css';
 import { PASSWORD } from './Constants';
 import LogIn from './components/LogIn';
 import WordEntry from './components/WordEntry';
+import SeeLists from './components/SeeLists';
 
 class App extends Component {
   constructor(props) {
@@ -10,11 +11,16 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.finishLogin = this.finishLogin.bind(this);
+    this.seeLists = this.seeLists.bind(this);
   }
 
   state = {
     password: "",
     appState: 0
+  }
+
+  seeLists() {
+    this.setState({appState: 3});
   }
 
   finishLogin() {
@@ -56,7 +62,15 @@ class App extends Component {
         }
         {
           this.state.appState === 2 &&
-          <WordEntry />
+          <WordEntry
+            seeLists={this.seeLists}
+          />
+        }
+        {
+          this.state.appState === 3 &&
+          <SeeLists
+            addList={this.finishLogin}
+          />
         }
       </div>
     );

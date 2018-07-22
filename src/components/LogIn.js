@@ -8,25 +8,30 @@ export default class LogIn extends Component {
     state = {
         error: "",
         email: "",
-        password: ""
+        password: "",
+        userId: "",
+        loading: false
     }
 
     logIn(event) {
         event.preventDefault();
+        this.setState({loading: true});
         this.state.auth.signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((() => {
+                this.setState({userId: firebase.auth().currentUser.uid});
                 this.props.finishLogin();
+                console.log("login finished");
             }))
             .catch(error => {
                 this.setState({error: error});
+                this.setState({loading: false});
             });
     }
 
-    constructor(props) {
-        super(props);
+    componentDidMount() {
         this.logIn = this.logIn.bind(this);
         firebase.initializeApp(firebaseConfig);
-        this.state.auth = firebase.auth();
+        this.setState({auth: firebase.auth()})
     }
 
     render() {
@@ -45,9 +50,11 @@ export default class LogIn extends Component {
                         type="password"
                         placeholder="Password"
                     />
-                    <button type="submit" value="Submit">
+                    { !this.state.loading ? <button type="submit" value="Submit">
                         Sign In
-                    </button>
+                    </button> :
+                    <h1>LOADING...</h1>
+                    }
 
                     { this.state.error && <p>{this.state.error.message}</p> }
                 </form>
