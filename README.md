@@ -1,3 +1,14 @@
+# _Remote Classroom Teacher's Website_
+
+#### _The teacher's website for the Remote Classroom app_
+
+#### By _**Sam Gespass**_
+
+## Summary
+
+_This website is for teachers who are using the Remote Classroom OpenTok Android app. It allows the teachers to use their own vocabulary lists and pictures for activities._
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { PASSWORD } from './Constants';
 import LogIn from './components/LogIn';
+import WordEntry from './components/WordEntry';
 
 class App extends Component {
   constructor(props) {
@@ -55,9 +56,7 @@ class App extends Component {
         }
         {
           this.state.appState === 2 &&
-          <div>
-            <p>Logged In</p>
-          </div>
+          <WordEntry />
         }
       </div>
     );
