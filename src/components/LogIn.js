@@ -9,16 +9,14 @@ export default class LogIn extends Component {
         error: "",
         email: "",
         password: "",
-        userId: "",
         loading: false
     }
 
     logIn(event) {
         event.preventDefault();
         this.setState({loading: true});
-        this.state.auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((() => {
-                this.setState({userId: firebase.auth().currentUser.uid});
                 this.props.finishLogin();
                 console.log("login finished");
             }))
@@ -31,7 +29,6 @@ export default class LogIn extends Component {
     componentDidMount() {
         this.logIn = this.logIn.bind(this);
         firebase.initializeApp(firebaseConfig);
-        this.setState({auth: firebase.auth()})
     }
 
     render() {

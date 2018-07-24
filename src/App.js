@@ -63,7 +63,7 @@ class App extends Component {
         {
           this.state.appState === 2 &&
           <WordEntry
-            seeLists={this.seeLists}
+            viewLists={this.seeLists}
           />
         }
         {

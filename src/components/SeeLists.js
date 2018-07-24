@@ -7,6 +7,7 @@ export default class SeeLists extends Component {
     }
 
     componentDidMount() {
+        console.log("SeeLists mounting");
         let lists = [];
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid
     ).once('value').then(function(snapshot){

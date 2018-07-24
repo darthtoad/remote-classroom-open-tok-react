@@ -55,7 +55,7 @@ export default class WordEntry extends Component {
     sendWordList(event) {
         event.preventDefault();
         if (this.state.wordList !== [] && this.state.listName !== '') {
-            firebase.database().ref('users/' + this.props.userId + '/' + this.state.listName).set({
+            firebase.database().ref('users/' + this.state.userId + '/' + this.state.listName).set({
                 wordList: this.state.wordList,
                 urlList: this.state.urlList
             });
@@ -95,6 +95,7 @@ export default class WordEntry extends Component {
                 </form> : <form onSubmit={this.addImageUrl}>
                     <label>Please enter a url for {this.state.word}</label>
                     <input type="text" value={this.state.imageUrl} onChange={this.handleUrlChange}></input>
+                    <input type="submit" value="Add Image Url" />
                 </form>
                 }
                 <h3>Current Words:</h3>
@@ -113,7 +114,7 @@ export default class WordEntry extends Component {
                 <form onSubmit={this.sendWordList}>
                     <input type="submit" value="Send Word List" />
                 </form>
-                <button onClick={this.props.seeLists()}>See Lists</button>
+                <button onClick={this.props.viewLists}>See Lists</button>
             </div>
         )
     }
