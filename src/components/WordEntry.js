@@ -54,7 +54,9 @@ export default class WordEntry extends Component {
 
     sendWordList(event) {
         event.preventDefault();
-        if (this.state.wordList !== [] && this.state.listName !== '') {
+        if (this.state.listName === 'sessionIds') {
+            alert("Not a valid list name");
+        } else if (this.state.wordList !== [] && this.state.listName !== '') {
             firebase.database().ref('users/' + this.state.userId + '/' + this.state.listName).set({
                 wordList: this.state.wordList,
                 urlList: this.state.urlList
@@ -115,6 +117,7 @@ export default class WordEntry extends Component {
                     <input type="submit" value="Send Word List" />
                 </form>
                 <button onClick={this.props.viewLists}>See Lists</button>
+                <button onClick={this.props.goToCreateSession}>Create Session</button>
             </div>
         )
     }

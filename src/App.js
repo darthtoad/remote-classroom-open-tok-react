@@ -4,6 +4,7 @@ import { PASSWORD } from './Constants';
 import LogIn from './components/LogIn';
 import WordEntry from './components/WordEntry';
 import SeeLists from './components/SeeLists';
+import CreateSession from './components/CreateSession';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.finishLogin = this.finishLogin.bind(this);
     this.seeLists = this.seeLists.bind(this);
+    this.goToCreateSession = this.goToCreateSession.bind(this);
   }
 
   state = {
@@ -36,6 +38,10 @@ class App extends Component {
 
   handleChange(event) {
     this.setState({password: event.target.value});
+  }
+
+  goToCreateSession() {
+    this.setState({appState: 4});
   }
 
   render() {
@@ -64,11 +70,19 @@ class App extends Component {
           this.state.appState === 2 &&
           <WordEntry
             viewLists={this.seeLists}
+            goToCreateSession={this.goToCreateSession}
           />
         }
         {
           this.state.appState === 3 &&
           <SeeLists
+            addList={this.finishLogin}
+          />
+        }
+        {
+          this.state.appState === 4 &&
+          <CreateSession
+            viewLists={this.seeLists}
             addList={this.finishLogin}
           />
         }
