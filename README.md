@@ -8,6 +8,13 @@
 
 _This website is for teachers who are using the Remote Classroom OpenTok Android app. It allows the teachers to use their own vocabulary lists and pictures for activities._
 
+## To do list
+
+* Allow pictures uploaded from computer
+* Improve layouts
+* Put sensitive info in server
+
+## Create React App Boilerplate Readme Section
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

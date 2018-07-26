@@ -10,7 +10,7 @@ export default class CreateSession extends Component {
 
     async newSession(event) {
         event.preventDefault();
-        let response = await fetch("https://server-glseikwsqp.now.sh/session");
+        let response = await fetch("https://server-glcucdwubw.now.sh/session");
         let jsonResponse = await response.json();
         console.log(jsonResponse);
         this.setState({sessionId: jsonResponse.sessionId});

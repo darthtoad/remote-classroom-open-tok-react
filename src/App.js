@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { PASSWORD } from './Constants';
 import LogIn from './components/LogIn';
 import WordEntry from './components/WordEntry';
 import SeeLists from './components/SeeLists';
@@ -29,10 +28,18 @@ class App extends Component {
     this.setState({appState: 2});
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    if (this.state.password === PASSWORD) {
-      this.setState({appState: 1});
+    try {
+      let response = await fetch("https://server-gooymlnxuu.now.sh/" + this.state.password);
+      let jsonResponse = await response.json();
+      if (jsonResponse.message === "Password Correct") {
+        this.setState({appState: 1});
+      } else {
+        alert("Password Incorrect");
+      }
+    } catch (error) {
+      alert("Password Incorrect");
     }
   }
 
@@ -64,7 +71,8 @@ class App extends Component {
         }
         {
           this.state.appState === 1 && 
-          <LogIn finishLogin={this.finishLogin}/>
+          <LogIn finishLogin={this.finishLogin}
+          password={this.state.password}/>
         }
         {
           this.state.appState === 2 &&

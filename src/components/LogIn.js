@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-import { firebaseConfig } from './../Constants.js';
 
 export default class LogIn extends Component {
     state = {
@@ -26,9 +25,10 @@ export default class LogIn extends Component {
             });
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.logIn = this.logIn.bind(this);
-        firebase.initializeApp(firebaseConfig);
+        let response = await fetch("https://server-pctcmsujbl.now.sh/firebase/" + this.props.password);
+        firebase.initializeApp(await response.json());
     }
 
     render() {
